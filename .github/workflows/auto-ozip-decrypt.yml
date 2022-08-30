@@ -27,7 +27,7 @@ jobs:
             sudo apt install aria2 expect -y
             aria2c $FIRMWARE_LINK
              
-       - name: Decrypting Ozip Now
+       - name: Decrypting Ozip
          run: |
              sudo -E apt-get -qq update
              sudo apt-get install python-pip
@@ -40,5 +40,5 @@ jobs:
        - name: Upload Decrypted Zip
          run: |
               curl -sL https://git.io/file-transfer | sh ; sudo chmod a+x transfer
-             ./transfer wet ./*.zip
+              ./transfer wet ./*.zip
               
