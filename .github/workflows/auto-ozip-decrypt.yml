@@ -3,13 +3,7 @@ name: OZIP Decrypter
 on:
 #  release:
 #    types: [published]
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
+  push:
   watch:
     types: [started]
 
