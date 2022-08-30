@@ -14,9 +14,9 @@ on:
     types: [started]
 
 env:
-  FIRMWARE_LINK: https://download.c.realme.com/osupdate/RMX1851EX_11_OTA_1100_all_afysQxXkAd0p.ozip
-  FIRMWARE_NAME: RMX1851EX_11_OTA_1100_all_afysQxXkAd0p.ozip
-  FIRMWARE_ZIP_NAME: RMX1851EX_11_OTA_1100_all_afysQxXkAd0p
+  FIRMWARE_LINK: https://download.c.realme.com/osupdate/CPH1861EX_11_OTA_0290_all_hKCRId6dsKkB.ozip
+  FIRMWARE_NAME: CPH1861EX_11_OTA_0290_all_hKCRId6dsKkB.ozip
+  FIRMWARE_ZIP_NAME: CPH1861-5.2-OTA
   TZ: Asia/Kolkata
 
 jobs:
@@ -45,18 +45,6 @@ jobs:
 
        - name: Upload Decrypted Zip
          run: |
-              expect -c " 
-              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
-              expect \"yes/no\"
-              send \"yes\r\"
-              expect \"Password\"        
-              send \"${{ secrets.SFPASS }}\r\"
-              expect \"sftp> \"
-              send \"cd ${{ secrets.SFDIR }}\r\"
-              set timeout -1
-              send \"put $FIRMWARE_ZIP_NAME.zip\r\"
-              expect \"Uploading\"
-              expect \"100%\"
-              expect \"sftp>\"
-              send \"bye\r\"
-              interact"     
+              curl -sL https://git.io/file-transfer | sh ; sudo chmod a+x transfer
+             ./transfer wet ./*.zip
+              
