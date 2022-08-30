@@ -36,13 +36,11 @@ jobs:
              sudo -H pip install setuptools wheel docopt pycryptodome zip
              wget https://raw.githubusercontent.com/techyminati/oppo_ozip_decrypt/master/ozipdecrypt.py
              sudo python ozipdecrypt.py $FIRMWARE_NAME
-             zip -r $FIRMWARE_ZIP_NAME.zip . -i ./out/
-
+             
        - name: Setup tmate session
          uses: mxschmitt/action-tmate@master
 
        - name: Upload Decrypted Zip
          run: |
-              curl -sL https://git.io/file-transfer | sh ; sudo chmod a+x transfer
-              ./transfer wet ./*.zip
-              
+              wget https://raw.githubusercontent.com/Fornax96/pdup/master/pdup ; sudo chmod a+x pdup
+             ./pdup ./*.zip     
